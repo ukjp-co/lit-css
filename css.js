@@ -1,40 +1,40 @@
+"use strict";
 //TODO: Implement a addToShadowDom() function? Animation, variable 2-way binding.
-
-
 // !!   THIS CSS IS LIT🔥🔥... 
-
 //TODO: scope = ShadowJS (Create a shadow and seperated version of javascript DOM 
 // that can be addressed to the calling function for seperation/non-collision)
-
-
 // Enum... duh.
-enum Scope {
-    Local = 'local',
-    Global = 'global',
-    Element = 'element'
-}
-class CSSFactory { 
-    constructor(private style : string, private jsvar? : Map<Object,Object>[] ) {
+var Scope;
+(function (Scope) {
+    Scope["Local"] = "local";
+    Scope["Global"] = "global";
+    Scope["Element"] = "element";
+})(Scope || (Scope = {}));
+class CSSFactory {
+    constructor(style, jsvar) {
+        this.style = style;
+        this.jsvar = jsvar;
         this.parseCSS(style, jsvar);
     }
-    private parseCSS(pre : string, vars? : Map<Object,Object>[]) {
-        let outputBuffer : string = "";
+    parseCSS(pre, vars) {
+        let outputBuffer = "";
         var caughtOrNotSet = false;
         if (vars !== undefined) {
             try {
                 vars.forEach((key, value) => {
                     let search = "^" + key.toString();
                     let regex = /(\^\w+)/;
-        
                     let forreplace = value.toString();
                     console.log(`regex: ${regex.toString}, search: ${search}, forreplace: ${forreplace}`);
-                    outputBuffer += (this.style.indexOf(search) >= 0)? this.style.replace(regex, value.toString()) : "";
+                    outputBuffer += (this.style.indexOf(search) >= 0) ? this.style.replace(regex, value.toString()) : "";
                 });
-            } catch {
+            }
+            catch (_a) {
                 console.error("Failed to use the provided jsvars!");
                 caughtOrNotSet = true;
             }
-        } else {
+        }
+        else {
             caughtOrNotSet = true;
         }
         outputBuffer = (caughtOrNotSet) ? pre : outputBuffer;
@@ -44,7 +44,6 @@ class CSSFactory {
         document.getElementsByTagName('head')[0].append(outputFinal);
     }
 }
-
 /**
  *
  *
@@ -61,19 +60,15 @@ class CSSFactory {
     }
 }
 * @todo Implement a addToShadowDom() function? Animation, variable 2-way binding.
-* 
+*
 */
-function css(userStyle : string) : Object {
+function css(userStyle) {
     const pre = userStyle;
     return {
-        pre : pre[0],
-        mount   : (jsVar : Map<Object,Object>[])=>{
+        pre: pre[0],
+        mount: (jsVar) => {
             return new CSSFactory(pre, jsVar);
         },
     };
 }
-
-type style = {
-    css : string;
-    scope : Scope;
-}
+//# sourceMappingURL=css.js.map
