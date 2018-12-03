@@ -1,0 +1,26 @@
+{
+  "name": "lit-css",
+  "version": "0.0.1",
+  "description": "Tiny Library to use css inside typescript or javscript",
+  "main": "css.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ukjp-labs/lit-css.git"
+  },
+  "keywords": [
+    "lit-css",
+    "css",
+    "javascript",
+    "template",
+    "library"
+  ],
+  "author": "Sam@ukjp-labs",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ukjp-labs/lit-css/issues"
+  },
+  "homepage": "https://github.com/ukjp-labs/lit-css#readme"
+}
