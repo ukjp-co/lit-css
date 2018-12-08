@@ -2,26 +2,20 @@
 
 
 // TODO:    THIS CSS IS LIT🔥🔥🚀... 
-enum env {
-    DEV = 0,
-    DIST = 1
-}
+
 //TODO: scope = ShadowJS (Create a shadow and seperated version of javascript DOM 
 // that can be addressed to the calling function for seperation/non-collision)
 
 
-
-//TODO: BY THE USER -  By default this is always set to dev environment.. make sure you
-// change this to env.DIST if you don't want console output in your product
-const ENV = env.DEV
-
-
-// Enum... duh. not implemented yet but will be used to scope the css.
+// Enum... duh.
 enum Scope {
     Local = 'local',
     Global = 'global',
     Element = 'element'
 }
+
+
+namespace com.ukjp.labs {}
 
 class j2css{
     constructor(private K : string, private V : string) {
@@ -51,6 +45,7 @@ type jsvar = {
     val : string
 }
 
+
 /**
  *
  *
@@ -65,25 +60,25 @@ class CSSFactory {
         var caughtOrNotSet = false;
         if (vars !== undefined) {
             try {
-                if(env.DEV) { console.log(vars); }
+                console.log(vars);
                 vars.forEach((val : j2css, i :number,all :j2css[])=>{
                     let item = val.key()
-                    if(env.DEV) {console.log(item);}
+                    console.log(item);
                     let key = <string> val.key()
                     let value = <string> val.value()
-                    if(env.DEV) {console.log(value);}
+                    console.log(value);
                     let search = "^" + key.toString() + "^";
                     let forreplace = value.toString();
-                    if(env.DEV) {console.log(`search: ${search}, forreplace: ${forreplace}`);}
+                    console.log(`search: ${search}, forreplace: ${forreplace}`);
                     outputBuffer += pre[0].replace(search, value);
-                    if(env.DEV) {console.log(outputBuffer);}
+                    console.log(outputBuffer);
                 });
             } catch( e) {
-                if(env.DEV) { console.error(`Error! data: ${e}`);}
+                console.error(`Error! data: ${e}`);
                 caughtOrNotSet = true;
             }
         } else {
-            if(env.DEV) {console.warn("caught or not set = true");}
+            console.warn("caught or not set = true");
             caughtOrNotSet = true;
         }
         outputBuffer = (caughtOrNotSet) ? pre : outputBuffer;

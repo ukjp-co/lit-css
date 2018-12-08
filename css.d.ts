@@ -1,12 +1,36 @@
+declare enum env {
+    DEV = 0,
+    DIST = 1
+}
+declare const ENV = env.DEV;
 declare enum Scope {
     Local = "local",
     Global = "global",
     Element = "element"
 }
+declare class j2css {
+    private K;
+    private V;
+    constructor(K: string, V: string);
+    key(): string;
+    value(): string;
+}
+/**
+ * @type define: jsvar
+ */
+declare type jsvar = {
+    key: string;
+    val: string;
+};
+/**
+ *
+ *
+ * @class
+ */
 declare class CSSFactory {
     private style;
     private jsvar?;
-    constructor(style: string, jsvar?: Map<Object, Object>[] | undefined);
+    constructor(style: string, jsvar?: j2css[] | undefined);
     private parseCSS;
 }
 /**
@@ -19,7 +43,7 @@ declare class CSSFactory {
  class MyClass extends css {
      constructor() {
          const style = css`myClass{
-             background-color: ^myLovelyPink;
+             background-color: ^myLovelyPink^;
         }`
         style.addToDom([{}])
     }
