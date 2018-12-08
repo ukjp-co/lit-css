@@ -1,20 +1,18 @@
 //TODO: Implement a addToShadowDom() function? Animation, variable 2-way binding.
+//TODO: scope = ShadowJS (Create a shadow and seperated version of javascript DOM 
+// that can be addressed to the calling function for seperation/non-collision)
 
-
-// TODO:    THIS CSS IS LIT🔥🔥🚀... 
+// TODO: ...   THIS CSS IS LIT🔥🔥🚀... 
 enum env {
     DEV = 0,
     DIST = 1
 }
-//TODO: scope = ShadowJS (Create a shadow and seperated version of javascript DOM 
-// that can be addressed to the calling function for seperation/non-collision)
 
-
-
-//TODO: BY THE USER -  By default this is always set to dev environment.. make sure you
-// change this to env.DIST if you don't want console output in your product
+// ======================================================================================//
+//TODO: BY THE USER -  By default this is always set to dev environment.. make sure you  //
+// change this to env.DIST if you don't want console output in your product              //
 const ENV = env.DEV
-
+//=======================================================================================//
 
 // Enum... duh. not implemented yet but will be used to scope the css.
 enum Scope {
@@ -28,12 +26,6 @@ class j2css{
         this.K =  K;
         this.V = V;
     }
-    // set key(knae : string) {
-    //     this.K = name;
-    // }
-    // set value(val : string) {
-    //     this.V = val;
-    // }
     key() : string {
         return this.K;
     }
@@ -44,7 +36,7 @@ class j2css{
 }
 
 /**
- * @type define: jsvar
+ * @type define: jsvar 
  */
 type jsvar = {
     key : string,
@@ -67,10 +59,10 @@ class CSSFactory {
             try {
                 if(env.DEV) { console.log(vars); }
                 vars.forEach((val : j2css, i :number,all :j2css[])=>{
-                    let item = val.key()
+                    let item = val.key();
                     if(env.DEV) {console.log(item);}
-                    let key = <string> val.key()
-                    let value = <string> val.value()
+                    let key = <string> val.key();
+                    let value = <string> val.value();
                     if(env.DEV) {console.log(value);}
                     let search = "^" + key.toString() + "^";
                     let forreplace = value.toString();

@@ -1,7 +1,7 @@
 {
-  "name": "lit-css",
+  "name": "style-so-lit",
   "version": "0.0.1",
-  "description": "Tiny Library to use css inside typescript or javscript",
+  "description": "Tiny Library to use css in litterals inside typescript or javscript",
   "main": "css.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -15,7 +15,12 @@
     "css",
     "javascript",
     "template",
-    "library"
+    "library",
+    "litterals",
+    "style",
+    "definitions",
+    "WIP",
+    "help needed"
   ],
   "author": "Sam@ukjp-labs",
   "license": "ISC",

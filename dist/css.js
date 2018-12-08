@@ -1,9 +1,19 @@
 "use strict";
 //TODO: Implement a addToShadowDom() function? Animation, variable 2-way binding.
-// TODO:    THIS CSS IS LIT🔥🔥🚀... 
 //TODO: scope = ShadowJS (Create a shadow and seperated version of javascript DOM 
 // that can be addressed to the calling function for seperation/non-collision)
-// Enum... duh.
+// TODO: ...   THIS CSS IS LIT🔥🔥🚀... 
+var env;
+(function (env) {
+    env[env["DEV"] = 0] = "DEV";
+    env[env["DIST"] = 1] = "DIST";
+})(env || (env = {}));
+// ======================================================================================//
+//TODO: BY THE USER -  By default this is always set to dev environment.. make sure you  //
+// change this to env.DIST if you don't want console output in your product              //
+const ENV = env.DEV;
+//=======================================================================================//
+// Enum... duh. not implemented yet but will be used to scope the css.
 var Scope;
 (function (Scope) {
     Scope["Local"] = "local";
@@ -46,27 +56,41 @@ class CSSFactory {
         var caughtOrNotSet = false;
         if (vars !== undefined) {
             try {
-                console.log(vars);
+                if (env.DEV) {
+                    console.log(vars);
+                }
                 vars.forEach((val, i, all) => {
                     let item = val.key();
-                    console.log(item);
+                    if (env.DEV) {
+                        console.log(item);
+                    }
                     let key = val.key();
                     let value = val.value();
-                    console.log(value);
+                    if (env.DEV) {
+                        console.log(value);
+                    }
                     let search = "^" + key.toString() + "^";
                     let forreplace = value.toString();
-                    console.log(`search: ${search}, forreplace: ${forreplace}`);
+                    if (env.DEV) {
+                        console.log(`search: ${search}, forreplace: ${forreplace}`);
+                    }
                     outputBuffer += pre[0].replace(search, value);
-                    console.log(outputBuffer);
+                    if (env.DEV) {
+                        console.log(outputBuffer);
+                    }
                 });
             }
             catch (e) {
-                console.error(`Error! data: ${e}`);
+                if (env.DEV) {
+                    console.error(`Error! data: ${e}`);
+                }
                 caughtOrNotSet = true;
             }
         }
         else {
-            console.warn("caught or not set = true");
+            if (env.DEV) {
+                console.warn("caught or not set = true");
+            }
             caughtOrNotSet = true;
         }
         outputBuffer = (caughtOrNotSet) ? pre : outputBuffer;

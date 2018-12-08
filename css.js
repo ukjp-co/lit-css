@@ -1,16 +1,18 @@
 "use strict";
 //TODO: Implement a addToShadowDom() function? Animation, variable 2-way binding.
-// TODO:    THIS CSS IS LIT🔥🔥🚀... 
+//TODO: scope = ShadowJS (Create a shadow and seperated version of javascript DOM 
+// that can be addressed to the calling function for seperation/non-collision)
+// TODO: ...   THIS CSS IS LIT🔥🔥🚀... 
 var env;
 (function (env) {
     env[env["DEV"] = 0] = "DEV";
     env[env["DIST"] = 1] = "DIST";
 })(env || (env = {}));
-//TODO: scope = ShadowJS (Create a shadow and seperated version of javascript DOM 
-// that can be addressed to the calling function for seperation/non-collision)
-//TODO: BY THE USER -  By default this is always set to dev environment.. make sure you
-// change this to env.DIST if you don't want console output in your product
+// ======================================================================================//
+//TODO: BY THE USER -  By default this is always set to dev environment.. make sure you  //
+// change this to env.DIST if you don't want console output in your product              //
 const ENV = env.DEV;
+//=======================================================================================//
 // Enum... duh. not implemented yet but will be used to scope the css.
 var Scope;
 (function (Scope) {
@@ -25,12 +27,6 @@ class j2css {
         this.K = K;
         this.V = V;
     }
-    // set key(knae : string) {
-    //     this.K = name;
-    // }
-    // set value(val : string) {
-    //     this.V = val;
-    // }
     key() {
         return this.K;
     }

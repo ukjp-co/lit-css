@@ -1,21 +1,25 @@
 //TODO: Implement a addToShadowDom() function? Animation, variable 2-way binding.
-
-
-// TODO:    THIS CSS IS LIT🔥🔥🚀... 
-
 //TODO: scope = ShadowJS (Create a shadow and seperated version of javascript DOM 
 // that can be addressed to the calling function for seperation/non-collision)
 
+// TODO: ...   THIS CSS IS LIT🔥🔥🚀... 
+enum env {
+    DEV = 0,
+    DIST = 1
+}
 
-// Enum... duh.
+// ======================================================================================//
+//TODO: BY THE USER -  By default this is always set to dev environment.. make sure you  //
+// change this to env.DIST if you don't want console output in your product              //
+const ENV = env.DEV
+//=======================================================================================//
+
+// Enum... duh. not implemented yet but will be used to scope the css.
 enum Scope {
     Local = 'local',
     Global = 'global',
     Element = 'element'
 }
-
-
-namespace com.ukjp.labs {}
 
 class j2css{
     constructor(private K : string, private V : string) {
@@ -38,13 +42,12 @@ class j2css{
 }
 
 /**
- * @type define: jsvar
+ * @type define: jsvar 
  */
 type jsvar = {
     key : string,
     val : string
 }
-
 
 /**
  *
@@ -60,25 +63,25 @@ class CSSFactory {
         var caughtOrNotSet = false;
         if (vars !== undefined) {
             try {
-                console.log(vars);
+                if(env.DEV) { console.log(vars); }
                 vars.forEach((val : j2css, i :number,all :j2css[])=>{
-                    let item = val.key()
-                    console.log(item);
-                    let key = <string> val.key()
-                    let value = <string> val.value()
-                    console.log(value);
+                    let item = val.key();
+                    if(env.DEV) {console.log(item);}
+                    let key = <string> val.key();
+                    let value = <string> val.value();
+                    if(env.DEV) {console.log(value);}
                     let search = "^" + key.toString() + "^";
                     let forreplace = value.toString();
-                    console.log(`search: ${search}, forreplace: ${forreplace}`);
+                    if(env.DEV) {console.log(`search: ${search}, forreplace: ${forreplace}`);}
                     outputBuffer += pre[0].replace(search, value);
-                    console.log(outputBuffer);
+                    if(env.DEV) {console.log(outputBuffer);}
                 });
             } catch( e) {
-                console.error(`Error! data: ${e}`);
+                if(env.DEV) { console.error(`Error! data: ${e}`);}
                 caughtOrNotSet = true;
             }
         } else {
-            console.warn("caught or not set = true");
+            if(env.DEV) {console.warn("caught or not set = true");}
             caughtOrNotSet = true;
         }
         outputBuffer = (caughtOrNotSet) ? pre : outputBuffer;
