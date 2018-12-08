@@ -22,12 +22,16 @@ class CSSFactory {
         var caughtOrNotSet = false;
         if (vars !== undefined) {
             try {
-                vars.forEach((key, value) => {
+                let x : string;
+                vars.forEach((x) => {
+                    console.log(x);
+                    let key = <string> x[0];
+                    let value = <string> x[1];
                     let search = "^" + key.toString();
                     let regex = /(\^\w+)/;
         
                     let forreplace = value.toString();
-                    console.log(`regex: ${regex.toString}, search: ${search}, forreplace: ${forreplace}`);
+                    console.log(`regex: ${regex.toString()}, search: ${search}, forreplace: ${forreplace}`);
                     outputBuffer += (this.style.indexOf(search) >= 0)? this.style.replace(regex, value.toString()) : "";
                 });
             } catch {
